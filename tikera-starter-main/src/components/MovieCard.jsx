@@ -1,24 +1,32 @@
 import React from "react";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, setSelectedMovie }) => {
     return(
-        <div style={{
+        <div style =
+        {{
+            backgroundColor: "#ffffff",
+            color: "black",
             width: "180px",
             margin: "10px",
             padding: "10px",
-            border: "1px solid #ddd",
-            borderRadius: "8px",
-            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
             textAlign: "center",
-            fontFamily: "Arial, sans-serif"
-          }}>
+            border: "2px solid #aaaaaa",
+            borderRadius: "10px",
+            cursor: "pointer",
+            transition: "transform 0.2s"
+        }}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            onClick = {() => setSelectedMovie(movie)}
+        >
+
             <img
                 src = {`./src/assets/images/${movie.image}`}
                 alt = {`image for ${movie.title}: ${movie.image}`}
-                style = {{ width: "100%", height: "auto", borderRadius: "4px" }}
+                style = {{ width: "100%", height: "auto", borderRadius: "5px" }}
             />
-            <h3 style = {{ fontSize: "18px", margin: "10px 0", color: "white" }}> {movie.title} </h3>
-            <p style = {{ fontSize: "14px", color: "#666" }}> {movie.genre} - {movie.duration} minutes </p>
+            <h3 style = {{ fontSize: "18px", margin: "10px 0" }}> {movie.title} </h3>
+            <p style = {{ fontSize: "14px", color: "#666666" }}> {movie.genre} - {movie.duration} minutes </p>
           </div>
     );
 }

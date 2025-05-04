@@ -4,25 +4,24 @@ const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 
 const DaySelector = ({ selectedDay, onDayChange }) => {
     return (
-        <div>
-            {days.map((day) => (
+        <div style = {{ width: "100%", textAlign: "center" }}>
+            { days.map((day) => (
                 <button
-                    key = {day}
                     onClick = {() => onDayChange(day)}
                     style =
                     {
                         {
+                            backgroundColor: selectedDay === day ? "maroon" : "#eeeeee",
+                            color: selectedDay === day ? "#ffffff" : "#000000",
                             margin: "5px",
                             padding: "10px",
-                            backgroundColor: selectedDay === day ? "#007BFF" : "#f0f0f0",
-                            color: selectedDay === day ? "#ffffff" : "#000000",
-                            border: "none",
+                            border: "2px solid #eeeeee",
                             borderRadius: "5px",
-                            cursor: "pointer",
+                            cursor: "pointer"
                         }
                     }
                 >
-                    {day}
+                {day}
                 </button>
             ))}
         </div>

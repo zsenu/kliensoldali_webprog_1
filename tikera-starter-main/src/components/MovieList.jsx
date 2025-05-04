@@ -1,7 +1,7 @@
 import React from "react";
 import MovieCard from "./MovieCard";
 
-const MovieList = ({ movies, selectedDay }) => {
+const MovieList = ({ movies, selectedDay, setSelectedMovie }) => {
     const filteredMovies = movies.filter((movie) =>
     movie.screenings.some((screening) => screening.weekday === selectedDay)
     );
@@ -15,7 +15,7 @@ const MovieList = ({ movies, selectedDay }) => {
             marginTop: "20px"
         }}>
             {filteredMovies.map((movie) => (
-                <MovieCard key={movie.id} movie={movie} />
+                <MovieCard movie = {movie} setSelectedMovie = {setSelectedMovie} />
             ))}
         </div>
       );
