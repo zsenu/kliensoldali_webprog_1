@@ -11,7 +11,7 @@ const MovieList = ({ movies, selectedDay }) => {
                 filteredMovies.map((movie) => (
                     <div key = {movie.id} style = {{ margin: "10px 0"}}>
                         <h3>{movie.title}</h3>
-                        <p>{movie.description}</p>
+                        <p>image name: {movie.image} - {movie.genre}, {movie.duration}</p>
                     </div>
                 ))
             }
