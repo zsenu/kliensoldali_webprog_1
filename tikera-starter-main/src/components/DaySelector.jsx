@@ -15,7 +15,7 @@ const DaySelector = ({ selectedDay, onDayChange }) => {
                             margin: "5px",
                             padding: "10px",
                             backgroundColor: selectedDay === day ? "#007BFF" : "#f0f0f0",
-                            color: selectedDay === day ? "#fff" : "#000",
+                            color: selectedDay === day ? "#ffffff" : "#000000",
                             border: "none",
                             borderRadius: "5px",
                             cursor: "pointer",

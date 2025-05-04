@@ -1,22 +1,24 @@
 import React from "react";
+import MovieCard from "./MovieCard";
 
 const MovieList = ({ movies, selectedDay }) => {
     const filteredMovies = movies.filter((movie) =>
     movie.screenings.some((screening) => screening.weekday === selectedDay)
     );
 
-    return(
-        <div>
-            {
-                filteredMovies.map((movie) => (
-                    <div key = {movie.id} style = {{ margin: "10px 0"}}>
-                        <h3>{movie.title}</h3>
-                        <p>image name: {movie.image} - {movie.genre}, {movie.duration}</p>
-                    </div>
-                ))
-            }
+    return (
+        <div style = {{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "20px",
+            marginTop: "20px"
+        }}>
+            {filteredMovies.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} />
+            ))}
         </div>
-    );
+      );
 };
 
 export default MovieList;

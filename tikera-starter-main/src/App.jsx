@@ -14,11 +14,31 @@ const App = () => {
         setMovies(moviesData);
     }, []);
 
-    return(
+    return (
         <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-            <h1>Cinema booking</h1>
-            <DaySelector selectedDay = {selectedDay} onDayChange = {setSelectedDay} />
-            <MovieList movies = {movies} selectedDay = {selectedDay} />
+            <h1>Cinema Booking</h1>
+            < DaySelector selectedDay = {selectedDay} onDayChange = {setSelectedDay} />
+            <div style = {{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: "20px"
+            }}>
+            <div style = {{ flex: "3", marginRight: "20px" }}>
+                <MovieList movies = {movies} selectedDay = {selectedDay} />
+            </div>
+    
+            <div style = {{
+                flex: "2",
+                border: "1px solid #ddd",
+                borderRadius: "8px",
+                padding: "10px",
+                backgroundColor: "#f9f9f9",
+                color: "black",
+                height: "fit-content"
+            }}>
+                <p>movie details placeholder</p>
+            </div>
+          </div>
         </div>
     );
 };
