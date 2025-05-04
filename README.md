@@ -10,18 +10,18 @@ amíg egy hallgató egy másik hallgató munkáját - vagy legalábbis annak jel
 saját munkájájaként mutatja be, az fegyelmi vétségnek számít.
 A fegyelmi vétség legsúlyosabb következménye a hallgató elbocsátása az egyetemről.
 
--[ ] Az alkalmazás legalább 4 komponensből áll. (Enélkül a beadandót nem fogadjuk el.) (1pt)
+-[X] Az alkalmazás legalább 4 komponensből áll. (Enélkül a beadandót nem fogadjuk el.) (1pt)
 Tehát léteznek például a következő komponensek:  
   - Film kártya komponens
   - Jegytípus választó komponens
   - Helykiválasztó komponens
   - Foglalás összesítő komponens
 -[X] Az alkalmazásban a komponenseket logikusan, funkciók szerint szétbontva hozta létre, ügyelve a tárgyon elsajátított alapelvekre. (2pt)
--[ ] Film kártyák és vetítések
+-[X] Film kártyák és vetítések
   -[X] A mai nap vetített filmek összes adatai megjelennek a kártyákon (3pt)
   -[X] A napok között tudunk navigálni és a napot kiválasztva az adott napon vetített filmek jelennek meg (1pt)
-  -[ ] A vetítések időpontjai megjelennek a kártyákon (1pt)
-  -[ ] A vetítések közül választhatunk, a választott vetítés adatai megjelennek az oldal megfelelő részén (2pt)
+  -[X] A vetítések időpontjai megjelennek a kártyákon (1pt)
+  -[X] A vetítések közül választhatunk, a választott vetítés adatai megjelennek az oldal megfelelő részén (2pt)
 -[ ] Jegytípusok
   -[ ] A különböző jegytípusok megjelennek és kiválaszthatjuk, hogy melyik jegytípusból hányat szeretnénk vásárolni, a különböző áraik megjelennek (2pt)
 -[ ] Helykiválasztás

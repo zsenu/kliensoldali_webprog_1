@@ -24,7 +24,7 @@ const App = () => {
     }
 
     return (
-        <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
+        <div style = {{ padding: "20px" }}>
             <h1 style = {{ textAlign: "center" }}>Cinema Booking</h1>
             < DaySelector selectedDay = {selectedDay} onDayChange = {newDaySelected} />
             
@@ -38,7 +38,7 @@ const App = () => {
                     < MovieList movies = {movies} selectedDay = {selectedDay} setSelectedMovie = {setSelectedMovie}/>
                 </div>
                 <div style = {{ width: "40%" }}>
-                    < SelectedMovie movie = {selectedMovie} />
+                    < SelectedMovie movie = {selectedMovie} selectedDay = {selectedDay} />
                 </div>
             </div>
         </div>

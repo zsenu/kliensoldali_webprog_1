@@ -7,6 +7,7 @@ const DaySelector = ({ selectedDay, onDayChange }) => {
         <div style = {{ width: "100%", textAlign: "center" }}>
             { days.map((day) => (
                 <button
+                    key = {day}
                     onClick = {() => onDayChange(day)}
                     style =
                     {

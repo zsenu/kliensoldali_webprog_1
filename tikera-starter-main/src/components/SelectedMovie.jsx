@@ -1,6 +1,7 @@
-import React from "react"
+import React from "react";
+import ShowTimeSelector from "./ShowTimeSelector.jsx";
 
-const SelectedMovie = ({ movie }) => {
+const SelectedMovie = ({ movie, selectedDay }) => {
     if (movie == null) return null;
     return (
         <div style =
@@ -29,6 +30,9 @@ const SelectedMovie = ({ movie }) => {
             <p><strong>Genre: </strong> {movie.genre} </p>
             <p><strong>Duration: </strong> {movie.duration} minutes </p>
             <p> {movie.description} </p>
+
+            < ShowTimeSelector movie = {movie} selectedDay = {selectedDay} />
+
         </div>
     )
 };
