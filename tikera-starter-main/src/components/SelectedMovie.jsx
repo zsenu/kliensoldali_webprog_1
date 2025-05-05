@@ -1,5 +1,5 @@
 import React from "react";
-import ShowTimeSelector from "./ShowTimeSelector.jsx";
+import ScreeningSelector from "./ScreeningSelector.jsx";
 
 const SelectedMovie = ({ movie, selectedDay }) => {
     if (movie == null) return null;
@@ -31,7 +31,7 @@ const SelectedMovie = ({ movie, selectedDay }) => {
             <p><strong>Duration: </strong> {movie.duration} minutes </p>
             <p> {movie.description} </p>
 
-            < ShowTimeSelector movie = {movie} selectedDay = {selectedDay} />
+            < ScreeningSelector movie = {movie} selectedDay = {selectedDay} />
         </div>
     )
 };
