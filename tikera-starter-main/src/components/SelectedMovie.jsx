@@ -32,7 +32,6 @@ const SelectedMovie = ({ movie, selectedDay }) => {
             <p> {movie.description} </p>
 
             < ShowTimeSelector movie = {movie} selectedDay = {selectedDay} />
-
         </div>
     )
 };

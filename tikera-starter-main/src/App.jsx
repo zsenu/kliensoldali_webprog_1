@@ -35,7 +35,7 @@ const App = () => {
                 marginTop: "20px",
             }}>
                 <div style = {{ width: "60%" }}>
-                    < MovieList movies = {movies} selectedDay = {selectedDay} setSelectedMovie = {setSelectedMovie}/>
+                    < MovieList movies = {movies} selectedDay = {selectedDay} setSelectedMovie = {setSelectedMovie} />
                 </div>
                 <div style = {{ width: "40%" }}>
                     < SelectedMovie movie = {selectedMovie} selectedDay = {selectedDay} />

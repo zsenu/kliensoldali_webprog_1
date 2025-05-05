@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const ShowTimeSelector = ({ movie, selectedDay }) => {
 
     const screenings = movie.screenings
         .filter((screening) => screening.weekday === selectedDay)
         .sort((a, b) => a.start_time.localeCompare(b.start_time));
+
+    const [selectedScreening, setSelectedScreening] = useState(null);
+
+    useEffect(() => {
+        setSelectedScreening(null);
+    }, [movie]);
 
     return (
         <div style = 
@@ -20,12 +26,13 @@ const ShowTimeSelector = ({ movie, selectedDay }) => {
                 screenings.map((screening) => (
                     <button
                     key = {screening.id}
+                    onClick = {() => setSelectedScreening(screening)}
                     style =
                     {{
-                        background: "#222222",
+                        background: (screening === selectedScreening) ? "white" : "#222222",
+                        color: (screening === selectedScreening) ? "black" : "white",
                         width: "80px",
                         height: "50px",
-                        border: "2px solid white",
                         borderRadius: "5px",
                         textAlign: "center"
                     }}>

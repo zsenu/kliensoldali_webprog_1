@@ -15,10 +15,11 @@ const MovieList = ({ movies, selectedDay, setSelectedMovie }) => {
             marginTop: "20px"
         }}>
 
-            {filteredMovies.map((movie) => (
-                <MovieCard key = {movie.id} movie = {movie} setSelectedMovie = {setSelectedMovie} />
+            {
+                filteredMovies.map((movie) => (
+                    <MovieCard key = {movie.id} movie = {movie} setSelectedMovie = {setSelectedMovie} />
                 ))
-            };
+            }
             
         </div>
       );
