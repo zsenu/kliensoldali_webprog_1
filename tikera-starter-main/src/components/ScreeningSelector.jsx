@@ -46,9 +46,7 @@ const ScreeningSelector = ({ movie, selectedDay }) => {
                     )
                 )}
             </div>
-            { selectedScreening ?
-            < SeatsSelector screening = {selectedScreening} />
-            : null }
+            { selectedScreening ? < SeatsSelector movie = {movie} selectedDay = {selectedDay} screening = {selectedScreening} /> : null }
         </div>
     );
 }

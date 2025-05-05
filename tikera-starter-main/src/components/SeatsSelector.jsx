@@ -1,12 +1,22 @@
 import React, { useState , useEffect} from "react";
+import SummaryPanel from "./SummaryPanel";
 
-const SeatsSelector = ({ screening }) => {
+const SeatsSelector = ({ screening, movie, selectedDay }) => {
 
     const rows = screening.room.rows;
     const cols = screening.room.seatsPerRow;
     const totalSeats = rows * cols;
     const availableSeats = totalSeats - screening.bookings.length;
     
+    // seat status: 0 = free, -1 = booked, 1 = selected
+    const [seats, setSeats] = useState( Array.from({ length: rows }, () => Array(cols).fill(0)));
+
+    useEffect(() => {
+        const newSeats = Array.from({ length: rows }, () => Array(cols).fill(0));
+        screening.bookings.forEach((booking) => { newSeats[booking.row - 1][booking.seat - 1] = -1; });
+        setSeats(newSeats);
+    }, [screening, rows, cols]);
+
     const ticketTypes = [
         { type: "Adult",   price: 2500 },
         { type: "Student", price: 2000 },
@@ -18,7 +28,27 @@ const SeatsSelector = ({ screening }) => {
     const [selectedSeniorTickets, setSelectedSeniorTickets] = useState(0);
     const selectedTickets = selectedAdultTickets + selectedStudentTickets + selectedSeniorTickets;
 
+    const [selectedSeats, setSelectedSeats] = useState(0);
+
+    const handleSeatClick = (row, col) => {
+        if (seats[row][col] === 0 && selectedSeats < selectedTickets)
+        {
+            seats[row][col] = 1;
+            setSelectedSeats(selectedSeats + 1);
+        }
+        else if (seats[row][col] === 1)
+        {
+            seats[row][col] = 0;
+            setSelectedSeats(selectedSeats - 1);
+        }
+    }
+
     const handleTicketChange = (type, change) => {
+        // reset seat selection
+        const newSeats = Array.from({ length: rows }, () => Array(cols).fill(0));
+        screening.bookings.forEach((booking) => { newSeats[booking.row - 1][booking.seat - 1] = -1; });
+        setSeats(newSeats);
+        setSelectedSeats(0);
         if (type === "Adult")
         {
             let newAdultTickets = selectedAdultTickets + change;
@@ -53,6 +83,40 @@ const SeatsSelector = ({ screening }) => {
     return (
         <div style = {{textAlign: "center"}}>
             <p>Available seats: {availableSeats} / {totalSeats}</p>
+            <div style = {{
+                background: "white",
+                color: "black",
+                width: "60%",
+                margin: "10px auto", // Center the div horizontally
+                marginRight: "85px", // Shift it slightly to the right
+                marginBottom: "20px",
+                borderRadius: "5px"
+            }}> Canvas </div>
+            {
+                seats.map((row, rowIndex) => (
+                    <div key = {rowIndex} style = {{ display: "flex", justifyContent: "center" }}>
+                        <span style = {{ marginRight: "10px" }}>{rowIndex + 1}.</span>
+                        {
+                            row.map((seat, colIndex) => (
+                                <button
+                                    key = {colIndex}
+                                    disabled = {seat == -1}
+                                    onClick = {() => handleSeatClick(rowIndex, colIndex)}
+                                    style = {{
+                                        width: "25px",
+                                        height: "25px",
+                                        margin: "2px",
+                                        backgroundColor: seat == -1 ? "#333333" : seat == 0 ? "#5fc850" : "white",
+                                        borderRadius: "5px",
+                                        cursor: seat == -1 ? "not-allowed" : "pointer"
+                                    }}
+                                />
+                            ))
+                        }
+                    </div>
+                ))
+            }
+            <p/>
             {
                 ticketTypes.map((ticket) => (
                     <div key = {ticket.type}>
@@ -78,7 +142,13 @@ const SeatsSelector = ({ screening }) => {
                     </div>
                 ))
             }
-            { selectedTickets > 0? <p>Selected tickets: 0 / {selectedTickets}<br/>Price to pay: {priceToPay} HUF</p> : null }
+            { selectedTickets > 0 && selectedTickets != selectedSeats ? <p>Selected tickets: {selectedSeats} / {selectedTickets}<br/>Price to pay: {priceToPay} HUF</p> : null }
+            { selectedTickets > 0 && selectedTickets === selectedSeats ? 
+                < SummaryPanel
+                    movie = {movie} selectedDay = {selectedDay} screening = {screening} seats = {seats}
+                    ticketTypes = {ticketTypes} adultTickets = {selectedAdultTickets} studentTickets = {selectedStudentTickets} seniorTickets = {selectedSeniorTickets}
+                /> : null
+            }
         </div>
     );
 }
