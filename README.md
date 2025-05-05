@@ -24,15 +24,15 @@ Tehát léteznek például a következő komponensek:
   -[X] A vetítések közül választhatunk, a választott vetítés adatai megjelennek az oldal megfelelő részén (2pt)
 -[X] Jegytípusok
   -[X] A különböző jegytípusok megjelennek és kiválaszthatjuk, hogy melyik jegytípusból hányat szeretnénk vásárolni, a különböző áraik megjelennek (2pt)
--[ ] Helykiválasztás
-  -[ ] A moziterem ülésrendjének megjelenítése (2pt)
-  -[ ] A foglalt helyek nem kiválaszthatóak, ez jelezve van a felhasználónak (2pt)
-  -[ ] A teremben a székek kijelölhetőek, megfelelően eltárolódik (3pt)
-  -[ ] Annyi helyet tudunk kiválasztani, ahány jegyet kiválasztottunk (1pt)
-  -[ ] Kezelve van, hogy mi történik ha több jegyet akarunk kiválasztani (előről kezdődik a kijelölési folyamat, vagy nem enged többet kijelölni) (2pt)
+-[X] Helykiválasztás
+  -[X] A moziterem ülésrendjének megjelenítése (2pt)
+  -[X] A foglalt helyek nem kiválaszthatóak, ez jelezve van a felhasználónak (2pt)
+  -[X] A teremben a székek kijelölhetőek, megfelelően eltárolódik (3pt)
+  -[X] Annyi helyet tudunk kiválasztani, ahány jegyet kiválasztottunk (1pt)
+  -[X] Kezelve van, hogy mi történik ha több jegyet akarunk kiválasztani (előről kezdődik a kijelölési folyamat, vagy nem enged többet kijelölni) (2pt)
 -[ ] Foglalás összesítése
-  -[ ] A foglalás részletei megjelennek, a kiválasztott vetítés adatai, a kiválasztott jegytípusok, a kiválaszott helyek, és a jegyek árainak összegzése (1pt)
-  -[ ] A foglalás módosítása közben az összesítő folyamatosan frissül (3pt)
+  -[X] A foglalás részletei megjelennek, a kiválasztott vetítés adatai, a kiválasztott jegytípusok, a kiválaszott helyek, és a jegyek árainak összegzése (1pt)
+  -[X] A foglalás módosítása közben az összesítő folyamatosan frissül (3pt)
   -[ ] A foglalás véglegesítésével eltárolódnak a foglalás adatai, megint nem tudunk ugyanezekre a helyekre foglalni a vetítésen (2pt)
 -[ ] Igényes, reszponzív, mobilra optimalizált megjelenés (3pt)
 
