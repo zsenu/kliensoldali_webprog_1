@@ -21,7 +21,7 @@ const MovieCard = ({ movie, setSelectedMovie }) => {
         >
 
             <img
-                src = {`images/${movie.image}`}
+                src = {`assets/images/${movie.image}`}
                 alt = {`image for ${movie.title}: ${movie.image}`}
                 style = {{ width: "100%", height: "auto", borderRadius: "5px" }}
             />
