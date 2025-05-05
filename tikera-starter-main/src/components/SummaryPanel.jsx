@@ -5,6 +5,10 @@ const SummaryPanel = ({ movie, selectedDay, screening, seats, ticketTypes, adult
     const totalTickets = adultTickets + studentTickets + seniorTickets;
     const totalPrice = (adultTickets * ticketTypes[0].price) + (studentTickets * ticketTypes[1].price) + (seniorTickets * ticketTypes[2].price);
 
+    const handlePurchase = () => {
+        console.log("purchase made");
+    }
+
     return (
         <div style = {{
             background: "#222222",
@@ -14,22 +18,32 @@ const SummaryPanel = ({ movie, selectedDay, screening, seats, ticketTypes, adult
             border: "2px solid white",
             borderRadius: "10px",
             marginTop: "20px",
-            textAlign: "left"
+            textAlign: "center"
         }}>
-            <h3 style = {{textAlign: "center" }}>Booking summary:</h3>
-            <p style = {{ margin: "3px 0px" }}>Movie Title: <strong>{movie.title}</strong></p>
-            <p style = {{ margin: "3px 0px" }}>Screening time: <strong>{selectedDay}, {screening.start_time}</strong> ({movie.duration} minutes)</p>
-            <p style = {{ margin: "0px" }}><strong>{totalTickets} seats</strong> selected:</p>
-            <ul style = {{ marginTop: "0px" }}>
-            {
-                seats.map((row, rowIndex) => (
-                    row.map((seat, seatIndex) => (
-                        seat === 1 ? <li key = {`${rowIndex}-${seatIndex}`}>row {rowIndex + 1}, seat {seatIndex + 1}</li> : null
+            <div style = {{ textAlign: "left" }}>
+                <h3 style = {{textAlign: "center" }}>Booking summary:</h3>
+                <p style = {{ margin: "3px 0px" }}>Movie Title: <strong>{movie.title}</strong></p>
+                <p style = {{ margin: "3px 0px" }}>Screening time: <strong>{selectedDay}, {screening.start_time}</strong> ({movie.duration} minutes)</p>
+                <p style = {{ margin: "0px" }}><strong>{totalTickets} seats</strong> selected:</p>
+                <ul style = {{ marginTop: "0px" }}>
+                {
+                    seats.map((row, rowIndex) => (
+                        row.some((seat) => seat === 1) ? ( // Check if the row contains at least one "1"
+                        <li key={rowIndex}>
+                            row {rowIndex + 1} -
+                            {
+                                row.map((seat, seatIndex) => (
+                                    seat === 1 ? <span key={seatIndex}> #{seatIndex + 1} </span> : null
+                                ))
+                            }
+                        </li>
+                    ) : null
                     ))
-                ))
-            }
-            </ul><h4 style={{ textAlign: "center" }}>Tickets selected for purchase:</h4>
-            <div style = {{ textAlign: "center" }}>
+                }
+                </ul>
+            </div>
+            <h4>Tickets selected for purchase:</h4>
+            <div>
                 {
                     adultTickets > 0 ? (
                         <pre>Adult      {String(adultTickets).padStart(2, " ")} x {ticketTypes[0].price} HUF    {String(adultTickets * ticketTypes[0].price).padStart(6, " ")} HUF</pre>
@@ -49,6 +63,24 @@ const SummaryPanel = ({ movie, selectedDay, screening, seats, ticketTypes, adult
                     Total:                      {String(totalPrice).padStart(6, " ")} HUF
                 </pre>
             </div>
+            <button
+                onClick = {() => handlePurchase()}
+                style = {{
+                    background: "#5fc850",
+                    color: "black",
+                    width: "40%",
+                    height: "50px",
+                    border: "2px solid white",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    marginBottom: "10px"
+                }}
+            >
+                Purchase tickets
+            </button>
         </div>
     );
 }
