@@ -13,7 +13,7 @@ const SelectedMovie = ({ movie, selectedDay }) => {
             borderRadius: "10px",
         }}>
             <img
-                src = {`public/images/${movie.image}`}
+                src = {`public/${movie.image}`}
                 alt = {`image for ${movie.title}: ${movie.image}`}
                 style =
                 {{
