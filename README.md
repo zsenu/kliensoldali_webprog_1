@@ -22,8 +22,8 @@ Tehát léteznek például a következő komponensek:
   -[X] A napok között tudunk navigálni és a napot kiválasztva az adott napon vetített filmek jelennek meg (1pt)
   -[X] A vetítések időpontjai megjelennek a kártyákon (1pt)
   -[X] A vetítések közül választhatunk, a választott vetítés adatai megjelennek az oldal megfelelő részén (2pt)
--[ ] Jegytípusok
-  -[ ] A különböző jegytípusok megjelennek és kiválaszthatjuk, hogy melyik jegytípusból hányat szeretnénk vásárolni, a különböző áraik megjelennek (2pt)
+-[X] Jegytípusok
+  -[X] A különböző jegytípusok megjelennek és kiválaszthatjuk, hogy melyik jegytípusból hányat szeretnénk vásárolni, a különböző áraik megjelennek (2pt)
 -[ ] Helykiválasztás
   -[ ] A moziterem ülésrendjének megjelenítése (2pt)
   -[ ] A foglalt helyek nem kiválaszthatóak, ez jelezve van a felhasználónak (2pt)
