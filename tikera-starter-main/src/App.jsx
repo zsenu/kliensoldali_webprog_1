@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DaySelector from "./components/DaySelector";
 import MovieList from "./components/MovieList";
-import moviesData from "../public/assets/movies.json";
+import moviesData from "./movies.json";
 import SelectedMovie from "./components/SelectedMovie";
 
 const App = () => {
