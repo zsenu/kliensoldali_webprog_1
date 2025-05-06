@@ -37,6 +37,7 @@ const App = () => {
         <div style = {{ padding: "20px" }}>
             <h1 style = {{ textAlign: "center" }}>Cinema Booking</h1>
             <div style={{ width: "100%", textAlign: "center" }}>
+                <p>Made by: Fiók Nándor (GSTQLI)</p>
                 <button onClick = {clearScriptData} style = {{ marginBottom: "20px" }}>
                     Clear localStorage data related to this page
                 </button>
