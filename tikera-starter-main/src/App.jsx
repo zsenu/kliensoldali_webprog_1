@@ -23,9 +23,24 @@ const App = () => {
         setSelectedMovie(null);
     }
 
+    const clearScriptData = () => {
+        Object.keys(localStorage).forEach((key) => {
+            if (key.startsWith("bookings-")) {
+                localStorage.removeItem(key);
+            }
+        });
+        alert("Cleared localStorage data related to this page.");
+        setSelectedMovie(null);
+    };
+
     return (
         <div style = {{ padding: "20px" }}>
             <h1 style = {{ textAlign: "center" }}>Cinema Booking</h1>
+            <div style={{ width: "100%", textAlign: "center" }}>
+                <button onClick = {clearScriptData} style = {{ marginBottom: "20px" }}>
+                    Clear localStorage data related to this page
+                </button>
+            </div>
             < DaySelector selectedDay = {selectedDay} onDayChange = {newDaySelected} />
             
             <div style =

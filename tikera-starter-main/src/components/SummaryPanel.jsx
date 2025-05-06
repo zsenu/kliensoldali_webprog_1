@@ -1,12 +1,34 @@
 import React from "react";
+import UseLocalStorage from "./UseLocalStorage";
 
-const SummaryPanel = ({ movie, selectedDay, screening, seats, ticketTypes, adultTickets, studentTickets, seniorTickets }) => {
+const SummaryPanel = ({ movie, selectedDay, screening, seats, resetSelection, resetTickets, setSeats, ticketTypes, adultTickets, studentTickets, seniorTickets }) => {
 
     const totalTickets = adultTickets + studentTickets + seniorTickets;
     const totalPrice = (adultTickets * ticketTypes[0].price) + (studentTickets * ticketTypes[1].price) + (seniorTickets * ticketTypes[2].price);
+    const [localBookings, setLocalBookings] = UseLocalStorage(`bookings-${screening.id}`, []);
 
     const handlePurchase = () => {
-        console.log("purchase made");
+    
+    const newBookings = [];
+    seats.forEach((row, rowIndex) => {
+        row.forEach((seat, colIndex) => {
+            if (seat === 1) {
+                newBookings.push({ row: rowIndex + 1, seat: colIndex + 1 });
+            }
+        });
+    });
+
+    const allBookings = [...screening.bookings, ...localBookings, ...newBookings];
+    setLocalBookings(allBookings);
+    screening.bookings = allBookings;
+
+    const updatedSeats = Array.from({ length: screening.room.rows }, () => Array(screening.room.seatsPerRow).fill(0));
+    allBookings.forEach((booking) => { updatedSeats[booking.row - 1][booking.seat - 1] = -1; });
+    setSeats(updatedSeats);
+    resetSelection();
+    resetTickets();
+
+    alert("Booking finalized and saved to localStorage!");
     }
 
     return (
@@ -28,7 +50,7 @@ const SummaryPanel = ({ movie, selectedDay, screening, seats, ticketTypes, adult
                 <ul style = {{ marginTop: "0px" }}>
                 {
                     seats.map((row, rowIndex) => (
-                        row.some((seat) => seat === 1) ? ( // Check if the row contains at least one "1"
+                        row.some((seat) => seat === 1) ? (
                         <li key={rowIndex}>
                             row {rowIndex + 1} -
                             {

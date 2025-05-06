@@ -1,5 +1,6 @@
 import React, { useState , useEffect} from "react";
 import SummaryPanel from "./SummaryPanel";
+import UseLocalStorage from "./UseLocalStorage";
 
 const SeatsSelector = ({ screening, movie, selectedDay }) => {
 
@@ -11,11 +12,17 @@ const SeatsSelector = ({ screening, movie, selectedDay }) => {
     // seat status: 0 = free, -1 = booked, 1 = selected
     const [seats, setSeats] = useState( Array.from({ length: rows }, () => Array(cols).fill(0)));
 
+    const [localBookings] = UseLocalStorage(`bookings-${screening.id}`, []);
+
     useEffect(() => {
+        setSelectedAdultTickets(0);
+        setSelectedStudentTickets(0);
+        setSelectedSeniorTickets(0);
         const newSeats = Array.from({ length: rows }, () => Array(cols).fill(0));
         screening.bookings.forEach((booking) => { newSeats[booking.row - 1][booking.seat - 1] = -1; });
+        localBookings.forEach((booking) => { newSeats[booking.row - 1][booking.seat - 1] = -1; });
         setSeats(newSeats);
-    }, [screening, rows, cols]);
+    }, [screening, rows, cols, localBookings]);
 
     const ticketTypes = [
         { type: "Adult",   price: 2500 },
@@ -43,12 +50,24 @@ const SeatsSelector = ({ screening, movie, selectedDay }) => {
         }
     }
 
-    const handleTicketChange = (type, change) => {
-        // reset seat selection
+    const resetSelection = () => {
         const newSeats = Array.from({ length: rows }, () => Array(cols).fill(0));
         screening.bookings.forEach((booking) => { newSeats[booking.row - 1][booking.seat - 1] = -1; });
+        localBookings.forEach((booking) => { newSeats[booking.row - 1][booking.seat - 1] = -1; });
         setSeats(newSeats);
         setSelectedSeats(0);
+    }
+
+    const resetTickets = () => {
+        setSelectedAdultTickets(0);
+        setSelectedStudentTickets(0);
+        setSelectedSeniorTickets(0);
+    }
+
+    const handleTicketChange = (type, change) => {
+
+        resetSelection();
+
         if (type === "Adult")
         {
             let newAdultTickets = selectedAdultTickets + change;
@@ -71,9 +90,6 @@ const SeatsSelector = ({ screening, movie, selectedDay }) => {
     }
         
     useEffect(() => {
-        setSelectedAdultTickets(0);
-        setSelectedStudentTickets(0);
-        setSelectedSeniorTickets(0);
     }, [screening])
 
     const priceToPay = (selectedAdultTickets * ticketTypes[0].price) +
@@ -145,8 +161,17 @@ const SeatsSelector = ({ screening, movie, selectedDay }) => {
             { selectedTickets > 0 && selectedTickets != selectedSeats ? <p>Selected tickets: {selectedSeats} / {selectedTickets}<br/>Price to pay: {priceToPay} HUF</p> : null }
             { selectedTickets > 0 && selectedTickets === selectedSeats ? 
                 < SummaryPanel
-                    movie = {movie} selectedDay = {selectedDay} screening = {screening} seats = {seats}
-                    ticketTypes = {ticketTypes} adultTickets = {selectedAdultTickets} studentTickets = {selectedStudentTickets} seniorTickets = {selectedSeniorTickets}
+                    movie = {movie}
+                    selectedDay = {selectedDay}
+                    screening = {screening}
+                    seats = {seats}
+                    resetSelection = {resetSelection}
+                    resetTickets = {resetTickets}
+                    setSeats = {setSeats}
+                    ticketTypes = {ticketTypes}
+                    adultTickets = {selectedAdultTickets}
+                    studentTickets = {selectedStudentTickets}
+                    seniorTickets = {selectedSeniorTickets}
                 /> : null
             }
         </div>
