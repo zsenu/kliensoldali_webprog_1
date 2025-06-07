@@ -1,0 +1,2 @@
+link a deployolt vercel projekthez:
+https://kliensoldali-bead1.vercel.app
